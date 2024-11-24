@@ -30,7 +30,8 @@ function volumes = returnVolumeList(varargin)
 
   if opt.glm.maxNbVols == Inf && isempty(opt.funcVolToSelect)
 
-    volumes = {boldFile};
+    % volumes = {boldFile};
+    volumes = cellstr(spm_select('expand', boldFile));
 
   else
 
