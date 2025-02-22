@@ -34,6 +34,12 @@ function [status, output] = saveAndRunWorkflow(matlabbatch, batchName, opt, subL
   output = {};
 
   if ~isempty(matlabbatch)
+    % TODO pass these somehow; hardcoded for now <<<<<<<
+    matlabbatch{1,1}.spm.stats.fmri_spec.timing.fmri_t = 72;
+    matlabbatch{1,1}.spm.stats.fmri_spec.timing.fmrit0 = 54;
+    if isfield(matlabbatch{1, 1}.spm.stats.fmri_spec, 'mask')
+        matlabbatch{1, 1}.spm.stats.fmri_spec = rmfield(matlabbatch{1, 1}.spm.stats.fmri_spec, 'mask');
+    end
 
     saveMatlabBatch(matlabbatch, batchName, opt, subLabel);
 
